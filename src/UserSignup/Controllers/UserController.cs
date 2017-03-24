@@ -11,17 +11,23 @@ namespace UserSignup.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Index(User user)
+        public IActionResult Index()
         {
             //TODO 3: update this to get all users from your UserData class
             // and return it to the view.  Update the view to display some user data.
-            if (user == null) user = new User();
-            return View(user);
+            UserData data = new UserData();
+            List<User> users = new List<User>(data.FetchAll());
+            return View(users);
         }
 
         // TODO 4: add a details controller and view that takes a single userid,
         // gets that user object from UserData, returns it to the details view
         // where it is displayed
+        public IActionResult Details(int userId)
+        {
+            UserData data = new UserData();
+            return View(data.FetchOne(userId));
+        }
 
         [HttpGet]
         public IActionResult Add()
@@ -34,8 +40,9 @@ namespace UserSignup.Controllers
         {
             if (user.Password == verify && !String.IsNullOrEmpty(user.Username))
             {
-                // return RedirectToAction("Index", user);
-                return RedirectToAction("Index", new { Username = user.Username } );
+                UserData data = new UserData();
+                data.Add(user);
+                return RedirectToAction("Details", new {userId = user.UserId});
             }
             else
             {

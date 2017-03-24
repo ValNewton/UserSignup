@@ -1,0 +1,18 @@
+﻿@model UserSignup.Models.User
+
+@if (String.IsNullOrEmpty(Model.Username))
+{
+    <h1>No user to display.</h1>
+    <p>Please <a asp-area="" asp-controller="User" asp-action="Add">Sign up</a>.</p>
+}
+else
+{
+    <h1>Welcome, @Model.FullName!</h1>
+    <p>Username: @Model.Username</p>
+    <p>Phone Number: @Model.PhoneNumber</p>
+    <p>Email: @Model.Email</p>
+
+    <p><small>Created at @Model.CreatedDate.ToString("d")</small></p>
+}
+
+<p><a asp-controller="User" asp-action="Index">See all users</a></p>

@@ -1,12 +1,16 @@
-﻿@model UserSignup.Models.User
+﻿@using UserSignup.Models
+@model List<User>
 
-<br />
+<h1>User Directory</h1>
 
-@if (String.IsNullOrEmpty(Model.Username))
+<p><a asp-area="" asp-controller="User" asp-action="Add">Create a new user</a>.</p>
+
+@foreach(User user in Model)
 {
-    <p>Please <a asp-area="" asp-controller="User" asp-action="Add">Sign up</a>.</p>
-}
-else
-{
-    <p>Welcome, @Model.Username!</p>
+    <h2>@user.FullName</h2>
+    <p>UserId: @user.UserId</p>
+    <p>Username: @user.Username</p>
+    <p>Phone Number: @user.PhoneNumber</p>
+    <p>Email: @user.Email</p>
+    <p><small>Created at @user.CreatedDate.ToString("d")</small></p>
 }

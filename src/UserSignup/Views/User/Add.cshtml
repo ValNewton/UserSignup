@@ -13,11 +13,19 @@
     </div>
     <div class="form-element">
         <label>Password</label>
-        <input name="Password" value="@Model.Password" type="password" />
+        <input name="Password" type="password" />
     </div>
     <div class="form-element">
         <label>Verify Password</label>
         <input name="verify" type="password" />
+    </div>
+    <div class="form-element">
+        <label>Full Name</label>
+        <input type="text" name="fullName" value="@Model.FullName" />
+    </div>
+    <div class="form-element">
+        <label>Phone Number</label>
+        <input type="text" name="phoneNumber" value="@Model.PhoneNumber" />
     </div>
 
     <input type="submit" value="Submit" />
